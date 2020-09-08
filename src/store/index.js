@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     mail: 0,
     mailPerSecond: 0, 
-    money: 0,
+    money: 10,
     people: 1,
     moneyPerBatch: 0.01,
     clickMultiplier: 1,

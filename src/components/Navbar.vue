@@ -3,7 +3,7 @@
     <div id="nav" class="container mx-auto py-4 flex justify-between items-center">
       <div id="links" class="space-x-4">
         <router-link to="/">Send Spam</router-link>
-        <router-link to="/tools">Buy Upgrades</router-link>
+        <router-link to="/upgrades">Buy Upgrades</router-link>
         <router-link to="/settings">Settings</router-link>
       </div>
       <Counter />

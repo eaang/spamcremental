@@ -8,7 +8,9 @@
         enter-active-class="animate__animated animate__fadeIn"
         leave-active-class="animate__animated animate__fadeOut"
       >
-        <router-view />
+        <keep-alive>
+          <router-view />
+        </keep-alive>
       </transition>
     </div>
   </div>
@@ -20,7 +22,7 @@ import Navbar from "./components/Navbar.vue";
 export default {
   components: {
     Navbar,
-    Alerts
+    Alerts,
   },
 };
 </script>
