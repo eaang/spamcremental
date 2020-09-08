@@ -3,9 +3,9 @@
     <div class="tools-container mx-auto w-2/3 text-center py-4 space-y-4">
       <div class="text-2xl font-bold">BOOST THOSE EARNINGS</div>
       <div class="grid grid-cols-3 divide-x divide-gray-400">
-        <div class="tools-link" @click="setCurrentTab('Marketing')">MARKETING</div>
-        <div class="tools-link" @click="setCurrentTab('Outreach')">OUTREACH</div>
-        <div class="tools-link" @click="setCurrentTab('Technology')">TECHNOLOGY</div>
+        <div class="tools-link" @click="setCurrentTab('Outreach')">EMAIL ADDRESSES</div>
+        <div class="tools-link" @click="setCurrentTab('Marketing')">MARKETING SKILLS</div>
+        <div class="tools-link" @click="setCurrentTab('Technology')">TECH UPGRADES</div>
       </div>
       <transition
         mode="out-in"
@@ -26,7 +26,7 @@ import Technology from "../components/Technology.vue";
 export default {
   data() {
     return {
-      currentTab: "Marketing",
+      currentTab: "Outreach",
     };
   },
   components: {

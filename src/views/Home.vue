@@ -3,7 +3,7 @@
     <div class="text-2xl font-bold">TIME TO MAKE MONEY</div>
     <div
       id="send-mail"
-      class="w-1/3 mx-auto py-4 text-lg font-bold text-white bg-red-500 hover:bg-red-600 cursor-pointer rounded-full"
+      class="w-4/5 md:w-3/5 lg:w-1/3 mx-auto py-4 text-lg font-bold text-white bg-red-500 hover:bg-red-600 cursor-pointer rounded-full"
       @click="sendSpam"
     >
       SEND SPAM
@@ -12,7 +12,7 @@
     <div id="current-status">
       Each batch of spam hits {{ people }}.
       <br />
-      You're making about ${{ currentRate.toFixed(2) }} per second with every {{ conversionRate }} spam mails sent.
+      You're making about ${{ currentRate.toFixed(2) }} per second for every 1000 spam mails sent.
     </div>
   </div>
 </template>
@@ -33,9 +33,6 @@ export default {
     },
     currentRate() {
       return this.$store.state.moneyPerBatch;
-    },
-    conversionRate() {
-      return this.$store.state.conversion;
     },
   },
   methods: {

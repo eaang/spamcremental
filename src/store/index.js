@@ -9,11 +9,26 @@ export default new Vuex.Store({
     mail: 0,
     money: 100,
     people: 1,
-    moneyPerBatch: 0.1,
-    conversion: 100,
+    moneyPerBatch: 0.01,
     clickMultiplier: 1,
     moneyMultiplier: 1,
     conversionMultiplier: 1,
+    marketing: {
+      graphicdesign: {
+        name: 'Graphic Design',
+        description: "It's my passion.",
+        startingVal: 0,
+        multiplier: .01,
+        price: 1
+      },
+      grammar: {
+        name: 'Good Grammar',
+        description: "Not just for nazis.",
+        startingVal: 0,
+        multiplier: .1,
+        price: 10
+      }
+    },
     outreach: {
       addresses: {
         name: 'Email Addresses',
@@ -36,10 +51,10 @@ export default new Vuex.Store({
   mutations: {
     sendSpam(state) {
       // mutate state
-      state.mail += state.people;
+      state.mail += (state.people * state.clickMultiplier);
     },
     makeMoney(state) {
-      const currentRate = (state.mail / state.conversion) * state.moneyPerBatch;
+      const currentRate = (state.mail / 1000) * state.moneyPerBatch;
       state.money += currentRate;
     },
     offAlert(state) {

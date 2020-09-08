@@ -7,7 +7,9 @@
         >
           <div class="flex flex-wrap">
             <div class="mr-4">{{ item.name }} ({{ item.startingVal }})</div>
-            <div class="item-category-description font-normal italic text-left">{{ item.description }}</div>
+            <div
+              class="item-category-description font-normal italic text-left"
+            >{{ item.description }}</div>
           </div>
           <font-awesome-icon icon="chevron-up" />
         </div>
@@ -19,18 +21,9 @@
         <ul
           class="item-category-options cursor-pointer bg-gray-400 grid text-gray-600 font-bold grid-cols-1 md:grid-cols-3"
         >
-          <li
-            @click="buyItem(1)"
-            class="hover:bg-gray-500 hover:text-white py-4"
-          >BUY 1 (${{ getPrice(1) }})</li>
-          <li
-            @click="buyItem(10)"
-            class="hover:bg-gray-500 hover:text-white py-4"
-          >BUY 10 (${{ getPrice(10) }})</li>
-          <li
-            @click="buyItem(100)"
-            class="hover:bg-gray-500 hover:text-white py-4"
-          >BUY 100 (${{ getPrice(100) }})</li>
+          <li @click="buyItem(1)" class="hover:bg-gray-500 hover:text-white py-4">TRAIN 1 LEVEL (${{ getPrice(1) }})</li>
+          <li @click="buyItem(10)" class="hover:bg-gray-500 hover:text-white py-4">TRAIN 10 LEVELS (${{ getPrice(10) }})</li>
+          <li @click="buyItem(100)" class="hover:bg-gray-500 hover:text-white py-4">TRAIN 100 LEVELS (${{ getPrice(100) }})</li>
         </ul>
       </div>
     </div>
@@ -44,12 +37,12 @@ export default {
   props: ["item"],
   computed: {
     multiplier() {
-      if (this.item.multiplier === 1) {
-        return "Get 1 address per item."
-      } else {
-        return "Get " + this.item.multiplier + " addresses per item."
-      }
-    }
+      return (
+        "Each level generates an additional $" +
+        this.item.multiplier.toFixed(2) +
+        " per second."
+      );
+    },
   },
   methods: {
     ...mapActions(["moneyStatus"]),
@@ -67,8 +60,8 @@ export default {
         this.moneyStatus();
       } else {
         this.item.startingVal += n;
-        this.item.price += (this.item.startingVal / 1000);
-        this.$store.state.people += n * this.item.multiplier;
+        this.item.price += this.item.startingVal / 1000;
+        this.$store.state.moneyPerBatch += n * this.item.multiplier;
         this.$store.state.money -= cost;
       }
     },
