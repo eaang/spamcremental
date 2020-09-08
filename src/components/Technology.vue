@@ -1,12 +1,25 @@
 <template>
-  <!-- Spam goes out faster and more automatically (e.g. autoclickers / servers) -->
-  <div id="automation-container">
+  <!-- Each batch of mail sent out hits more people (e.g. address lists) -->
+  <div id="technology-container">
+    <div v-for="(item, i) in items" :key="i">
+      <TechnologyItem class="my-4" :item="item" />
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
-</script>
+import TechnologyItem from "./TechnologyItem.vue";
 
-<style scoped>
-</style>
+export default {
+  components: {
+    TechnologyItem,
+  },
+  data() {
+    return {
+      items: this.$store.state.technology,
+    };
+  },
+  computed: {},
+  methods: {},
+};
+</script>

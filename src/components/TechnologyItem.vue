@@ -22,17 +22,17 @@
           class="item-category-options cursor-pointer bg-gray-400 grid text-gray-600 font-bold grid-cols-1 md:grid-cols-3"
         >
           <li @click="buyItem(1)" class="hover:bg-gray-500 hover:text-white py-4">
-            TRAIN 1 LEVEL
+            BUY 1 ITEM
             <br />
             (${{ getPrice(1) }})
           </li>
           <li @click="buyItem(10)" class="hover:bg-gray-500 hover:text-white py-4">
-            TRAIN 10 LEVELS
+            BUY 10 ITEMS
             <br />
             (${{ getPrice(10) }})
           </li>
           <li @click="buyItem(100)" class="hover:bg-gray-500 hover:text-white py-4">
-            TRAIN 100 LEVELS
+            BUY 100 ITEMS
             <br />
             (${{ getPrice(100) }})
           </li>
@@ -49,11 +49,11 @@ export default {
   props: ["item"],
   computed: {
     multiplier() {
-      return (
-        "Each level generates an additional $" +
-        this.item.multiplier.toFixed(2) +
-        " per second."
-      );
+      if (this.item.multiplier === 1) {
+        return "Send 1 spam mail every second.";
+      } else {
+        return "Send " + this.item.multiplier + " spam mails every second.";
+      }
     },
   },
   methods: {
@@ -69,7 +69,7 @@ export default {
       } else {
         this.item.startingVal += n;
         this.item.price += this.item.startingVal / 1000;
-        this.$store.state.moneyPerBatch += n * this.item.multiplier;
+        this.$store.state.mailPerSecond += n * this.item.multiplier;
         this.$store.state.money -= cost;
       }
     },

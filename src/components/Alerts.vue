@@ -1,8 +1,8 @@
 <template>
   <div class="flex w-screen justify-center">
     <transition
-      enter-active-class="animate__animated animate__fadeIn "
-      leave-active-class="animate__animated animate__fadeOut "
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOut"
     >
       <div
         id="no-money"
