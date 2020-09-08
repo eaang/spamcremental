@@ -1,5 +1,46 @@
 <template>
-  <div class="tools">
-    <h1>This is to buy tools</h1>
+  <div class="tools-container mx-auto w-2/3 text-center py-4 space-y-4">
+    <div class="text-2xl font-bold">BOOST THOSE EARNINGS</div>
+    <div class="grid grid-cols-3 divide-x divide-gray-400">
+      <div class="tools-link" @click="currentTab = 'Marketing'">MARKETING</div>
+      <div class="tools-link" @click="currentTab = 'Outreach'">OUTREACH</div>
+      <div class="tools-link" @click="currentTab = 'Technology'">TECHNOLOGY</div>
+    </div>
+    <transition
+      mode="out-in"
+      enter-active-class="animate__animated animate__fadeIn animate__faster"
+      leave-active-class="animate__animated animate__fadeOut animate__faster"
+    >
+      <component :is="currentTab"></component>
+    </transition>
   </div>
 </template>
+
+<script>
+import Marketing from "../components/Marketing.vue";
+import Outreach from "../components/Outreach.vue";
+import Technology from "../components/Technology.vue";
+
+export default {
+  data() {
+    return {
+      currentTab: "Marketing",
+    };
+  },
+  components: {
+    Marketing,
+    Outreach,
+    Technology,
+  },
+};
+</script>
+
+<style scoped>
+.tools-link {
+  @apply font-bold cursor-pointer text-red-500;
+}
+
+.tools-link:hover {
+  @apply underline text-red-600;
+}
+</style>

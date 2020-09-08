@@ -6,8 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     mail: 0,
-    money: 0,
-    moneyPerMail: 1,
+    money: 10,
+    moneyPerMail: .1,
     conversion: 100,
     clickMultiplier: 1,
     moneyMultiplier: 1,
@@ -21,7 +21,7 @@ export default new Vuex.Store({
       return state.money.toFixed(2);
     },
     currentRate: state => {
-      return state.moneyPerMail * state.moneyMultiplier;
+      return (state.moneyPerMail * state.moneyMultiplier).toFixed(2);
     },
     conversionRate: state => {
       return state.conversion * state.conversionMultiplier;
