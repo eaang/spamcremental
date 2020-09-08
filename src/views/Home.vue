@@ -10,7 +10,7 @@
       <font-awesome-icon icon="mail-bulk" />
     </div>
     <div id="current-status">
-      Each batch of spam hits {{ addresses }}.
+      Each batch of spam hits {{ people }}.
       <br />
       You're making about ${{ currentRate.toFixed(2) }} per second with every {{ conversionRate }} spam mails sent.
     </div>
@@ -24,11 +24,11 @@ import { mapActions } from "vuex";
 export default {
   name: "Home",
   computed: {
-    addresses() {
-      if (this.$store.state.addresses === 1) {
+    people() {
+      if (this.$store.state.people === 1) {
         return "1 person";
       } else {
-        return this.$store.state.addresses + " people";
+        return this.$store.state.people + " people";
       }
     },
     currentRate() {
