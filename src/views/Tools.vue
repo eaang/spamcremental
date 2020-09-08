@@ -1,18 +1,20 @@
 <template>
-  <div class="tools-container mx-auto w-2/3 text-center py-4 space-y-4">
-    <div class="text-2xl font-bold">BOOST THOSE EARNINGS</div>
-    <div class="grid grid-cols-3 divide-x divide-gray-400">
-      <div class="tools-link" @click="setCurrentTab('Marketing')">MARKETING</div>
-      <div class="tools-link" @click="setCurrentTab('Outreach')">OUTREACH</div>
-      <div class="tools-link" @click="setCurrentTab('Technology')">TECHNOLOGY</div>
+  <div>
+    <div class="tools-container mx-auto w-2/3 text-center py-4 space-y-4">
+      <div class="text-2xl font-bold">BOOST THOSE EARNINGS</div>
+      <div class="grid grid-cols-3 divide-x divide-gray-400">
+        <div class="tools-link" @click="setCurrentTab('Marketing')">MARKETING</div>
+        <div class="tools-link" @click="setCurrentTab('Outreach')">OUTREACH</div>
+        <div class="tools-link" @click="setCurrentTab('Technology')">TECHNOLOGY</div>
+      </div>
+      <transition
+        mode="out-in"
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOut"
+      >
+        <component :is="currentTab"></component>
+      </transition>
     </div>
-    <transition
-      mode="out-in"
-      enter-active-class="animate__animated animate__fadeIn animate__faster"
-      leave-active-class="animate__animated animate__fadeOut animate__faster"
-    >
-      <component :is="currentTab"></component>
-    </transition>
   </div>
 </template>
 

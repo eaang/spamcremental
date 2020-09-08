@@ -1,57 +1,54 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import upgrades from "./modules/upgrades";
 
 Vue.use(Vuex);
 
 // Basic mail stuff below
 export default new Vuex.Store({
-  modules: {
-    upgrades
-  },
   state: {
     mail: 0,
-    money: 1,
-    moneyPerMail: 0.01,
+    money: 0,
+    moneyPerBatch: 0.1,
     conversion: 100,
     clickMultiplier: 1,
     moneyMultiplier: 1,
-    conversionMultiplier: 1
+    conversionMultiplier: 1,
+    addresses: 1,
+    addressesCost: .1,
+    noMoney: false,
   },
-  getters: {
-    spamSent: state => {
-      return state.mail;
-    },
-    addresses: state => {
-      return Number.isNaN(state.addressLists * 100) ? 0 : state.addressLists * 100;
-    },
-    moneyMade: state => {
-      return state.money.toFixed(2);
-    },
-    currentRate: state => {
-      return (state.moneyPerMail * state.moneyMultiplier).toFixed(2);
-    },
-    conversionRate: state => {
-      return state.conversion * state.conversionMultiplier;
-    }
-  },
+  getters: {},
   mutations: {
     sendSpam(state) {
       // mutate state
-      let people = 0;
-      if (Number.isInteger(state.addressLists * 100)) {
-         people = state.addressLists * 100
-      }
-      state.mail += (people * state.clickMultiplier);
+      state.mail += state.addresses;
     },
     makeMoney(state) {
-      state.money += state.mail / 100;
+      const currentRate = (state.mail / state.conversion) * state.moneyPerBatch;
+      state.money += currentRate;
+    },
+    buyAddresses(state, n) {
+      const cost = (n * state.addressesCost);
+      state.money -= cost;
+      state.addresses += n;
+    },
+    raiseAddressesPrice(state) {
+      const increase = state.addressesCost / 10;
+      state.addressesCost += increase;
+    },
+    offAlert(state) {
+      state.noMoney = false;
     }
   },
   actions: {
     makeMoney({ commit }) {
       setInterval(() => {
         commit("makeMoney");
+      }, 1000);
+    },
+    moneyStatus({ commit }) {
+      setTimeout(() => {
+        commit("offAlert");
       }, 1000);
     }
   }

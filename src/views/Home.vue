@@ -10,19 +10,9 @@
       <font-awesome-icon icon="mail-bulk" />
     </div>
     <div id="current-status">
-      Each batch of spam hits {{ addresses }} people.
+      Each batch of spam hits {{ addresses }}.
       <br />
-      You're making ${{ currentRate }} per second for every {{ conversionRate }} spam mails sent.
-    </div>
-    <div id="counter-container" class="grid grid-cols-2">
-      <div id="mail-counter">
-        <div class="font-bold">Mails Sent</div>
-        <div>{{ spamSent }}</div>
-      </div>
-      <div id="money-counter">
-        <div class="font-bold">Cash Avaliable</div>
-        <div>${{ moneyMade }}</div>
-      </div>
+      You're making about ${{ currentRate.toFixed(2) }} per second with every {{ conversionRate }} spam mails sent.
     </div>
   </div>
 </template>
@@ -34,20 +24,18 @@ import { mapActions } from "vuex";
 export default {
   name: "Home",
   computed: {
-    spamSent() {
-      return this.$store.getters.spamSent;
-    },
     addresses() {
-      return this.$store.getters.addresses;
-    },
-    moneyMade() {
-      return this.$store.getters.moneyMade;
+      if (this.$store.state.addresses === 1) {
+        return "1 person";
+      } else {
+        return this.$store.state.addresses + " people";
+      }
     },
     currentRate() {
-      return this.$store.getters.currentRate;
+      return this.$store.state.moneyPerBatch;
     },
     conversionRate() {
-      return this.$store.getters.conversionRate;
+      return this.$store.state.conversion;
     },
   },
   methods: {

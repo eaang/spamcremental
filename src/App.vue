@@ -1,12 +1,7 @@
 <template>
-  <div id="app">
-    <div id="nav" class="border-b border-black">
-      <div class="container mx-auto py-4 space-x-4">
-        <router-link to="/">Send Spam</router-link>
-        <router-link to="/tools">Buy Tools</router-link>
-        <router-link to="/settings">Settings</router-link>
-      </div>
-    </div>
+  <div id="app" class="h-screen relative">
+    <Navbar />
+    <Alerts class="absolute bottom-0" />
     <div class="container mx-auto">
       <transition
         mode="out-in"
@@ -19,6 +14,16 @@
   </div>
 </template>
 
+<script>
+import Alerts from "./components/Alerts.vue";
+import Navbar from "./components/Navbar.vue";
+export default {
+  components: {
+    Navbar,
+    Alerts
+  },
+};
+</script>
 <style>
 :root {
   --animate-duration: 0.2s;
