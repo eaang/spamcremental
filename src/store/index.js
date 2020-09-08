@@ -7,15 +7,24 @@ export default new Vuex.Store({
   state: {
     mail: 0,
     money: 0,
+    moneyPerMail: 1,
+    conversion: 100,
     clickMultiplier: 1,
-    moneyMultiplier: 1
+    moneyMultiplier: 1,
+    conversionMultiplier: 1
   },
   getters: {
     spamSent: state => {
       return state.mail;
     },
     moneyMade: state => {
-      return state.money;
+      return state.money.toFixed(2);
+    },
+    currentRate: state => {
+      return state.moneyPerMail * state.moneyMultiplier;
+    },
+    conversionRate: state => {
+      return state.conversion * state.conversionMultiplier;
     }
   },
   mutations: {
@@ -24,11 +33,14 @@ export default new Vuex.Store({
       state.mail += state.clickMultiplier;
     },
     makeMoney(state) {
+      state.money += state.mail / 100;
     }
   },
   actions: {
     makeMoney({ commit }) {
-      setInterval(() => {});
+      setInterval(() => {
+        commit("makeMoney");
+      }, 1000);
     }
   },
   modules: {}
