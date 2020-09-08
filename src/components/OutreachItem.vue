@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="item-container">
-      <div class="item-category">
+      <div class="item-top">
         <div
           class="item-category-title bg-gray-600 text-white font-bold pt-2 px-4 flex justify-between items-center"
         >
@@ -11,33 +11,45 @@
               class="item-category-description font-normal italic text-left"
             >{{ item.description }}</div>
           </div>
-          <font-awesome-icon icon="chevron-up" />
+          <font-awesome-icon
+            v-if="isShown"
+            class="cursor-pointer"
+            @click="isShown = !isShown"
+            icon="chevron-up"
+          />
+          <font-awesome-icon
+            v-else
+            class="cursor-pointer"
+            @click="isShown = !isShown"
+            icon="chevron-down"
+          />
         </div>
 
         <div class="item-statistics bg-gray-600 text-white pb-2">
           <div class="px-4 text-left">{{ multiplier }}</div>
         </div>
-
-        <ul
-          class="item-category-options cursor-pointer bg-gray-400 grid text-gray-600 font-bold grid-cols-1 md:grid-cols-3"
-        >
-          <li @click="buyItem(1)" class="hover:bg-gray-500 hover:text-white py-4">
-            BUY 1 ITEM
-            <br />
-            (${{ getPrice(1) }})
-          </li>
-          <li @click="buyItem(10)" class="hover:bg-gray-500 hover:text-white py-4">
-            BUY 10 ITEMS
-            <br />
-            (${{ getPrice(10) }})
-          </li>
-          <li @click="buyItem(100)" class="hover:bg-gray-500 hover:text-white py-4">
-            BUY 100 ITEMS
-            <br />
-            (${{ getPrice(100) }})
-          </li>
-        </ul>
       </div>
+
+      <ul
+        :class="{ 'active': isShown }"
+        class="item-category-options overflow-hidden cursor-pointer bg-gray-400 grid text-gray-600 font-bold grid-cols-1 md:grid-cols-3"
+      >
+        <li @click="buyItem(1)" class="hover:bg-gray-500 hover:text-white py-4">
+          BUY 1 ITEM
+          <br />
+          (${{ getPrice(1) }})
+        </li>
+        <li @click="buyItem(10)" class="hover:bg-gray-500 hover:text-white py-4">
+          BUY 10 ITEMS
+          <br />
+          (${{ getPrice(10) }})
+        </li>
+        <li @click="buyItem(100)" class="hover:bg-gray-500 hover:text-white py-4">
+          BUY 100 ITEMS
+          <br />
+          (${{ getPrice(100) }})
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -47,6 +59,11 @@ import { mapActions } from "vuex";
 
 export default {
   props: ["item"],
+  data() {
+    return {
+      isShown: true,
+    };
+  },
   computed: {
     multiplier() {
       if (this.item.multiplier === 1) {
@@ -77,5 +94,5 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 </style>

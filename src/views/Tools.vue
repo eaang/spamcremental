@@ -49,4 +49,12 @@ export default {
 .tools-link:hover {
   @apply underline text-red-600;
 }
+.item-category-options {
+  height: 0;
+  transition: height 0.3s;
+}
+.active.item-category-options {
+  height: 5em;
+  transition: height 0.3s;
+}
 </style>
