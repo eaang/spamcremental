@@ -1,15 +1,15 @@
 <template>
-  <div id="counter-container" class="grid grid-cols-3 space-x-4">
-    <div id="mail-counter">
-      <div class="font-bold text-center">Mails Sent</div>
+  <div id="counter-container" class="grid grid-cols-3 gap-4">
+    <div id="mail-counter" class="flex flex-col justify-center">
+      <div class="font-bold text-center">Mails Sent:</div>
       <div class="text-center">{{ spamSent }}</div>
     </div>
-    <div id="rate-counter">
-      <div class="font-bold text-center">$$$ Per Second</div>
+    <div id="rate-counter" class="flex flex-col justify-center">
+      <div class="font-bold text-center">$$$ Per Second:</div>
       <div class="text-center">{{ rate }}</div>
     </div>
-    <div id="money-counter">
-      <div class="font-bold text-center">Cash Avaliable</div>
+    <div id="money-counter" class="flex flex-col justify-center">
+      <div class="font-bold text-center">Cash Avaliable:</div>
       <div class="text-center">${{ moneyMade.toFixed(2) }}</div>
     </div>
   </div>
