@@ -2,9 +2,9 @@
   <div class="tools-container mx-auto w-2/3 text-center py-4 space-y-4">
     <div class="text-2xl font-bold">BOOST THOSE EARNINGS</div>
     <div class="grid grid-cols-3 divide-x divide-gray-400">
-      <div class="tools-link" @click="currentTab = 'Marketing'">MARKETING</div>
-      <div class="tools-link" @click="currentTab = 'Outreach'">OUTREACH</div>
-      <div class="tools-link" @click="currentTab = 'Technology'">TECHNOLOGY</div>
+      <div class="tools-link" @click="setCurrentTab('Marketing')">MARKETING</div>
+      <div class="tools-link" @click="setCurrentTab('Outreach')">OUTREACH</div>
+      <div class="tools-link" @click="setCurrentTab('Technology')">TECHNOLOGY</div>
     </div>
     <transition
       mode="out-in"
@@ -32,14 +32,18 @@ export default {
     Outreach,
     Technology,
   },
+  methods: {
+    setCurrentTab(tab) {
+      this.currentTab = tab;
+    },
+  },
 };
 </script>
 
-<style scoped>
+<style>
 .tools-link {
   @apply font-bold cursor-pointer text-red-500;
 }
-
 .tools-link:hover {
   @apply underline text-red-600;
 }

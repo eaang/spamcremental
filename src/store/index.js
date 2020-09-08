@@ -1,13 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import upgrades from "./modules/upgrades";
 
 Vue.use(Vuex);
 
+// Basic mail stuff below
 export default new Vuex.Store({
+  modules: {
+    upgrades
+  },
   state: {
     mail: 0,
-    money: 10,
-    moneyPerMail: .1,
+    money: 1,
+    moneyPerMail: 0.01,
     conversion: 100,
     clickMultiplier: 1,
     moneyMultiplier: 1,
@@ -16,6 +21,9 @@ export default new Vuex.Store({
   getters: {
     spamSent: state => {
       return state.mail;
+    },
+    addresses: state => {
+      return Number.isNaN(state.addressLists * 100) ? 0 : state.addressLists * 100;
     },
     moneyMade: state => {
       return state.money.toFixed(2);
@@ -30,7 +38,11 @@ export default new Vuex.Store({
   mutations: {
     sendSpam(state) {
       // mutate state
-      state.mail += state.clickMultiplier;
+      let people = 0;
+      if (Number.isInteger(state.addressLists * 100)) {
+         people = state.addressLists * 100
+      }
+      state.mail += (people * state.clickMultiplier);
     },
     makeMoney(state) {
       state.money += state.mail / 100;
@@ -42,6 +54,5 @@ export default new Vuex.Store({
         commit("makeMoney");
       }, 1000);
     }
-  },
-  modules: {}
+  }
 });

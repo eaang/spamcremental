@@ -9,9 +9,11 @@
       SEND SPAM
       <font-awesome-icon icon="mail-bulk" />
     </div>
-    <div
-      id="earnings-counter"
-    >Currently making ${{ currentRate }} per second for every {{ conversionRate }} spam mails sent.</div>
+    <div id="current-status">
+      Each batch of spam hits {{ addresses }} people.
+      <br />
+      You're making ${{ currentRate }} per second for every {{ conversionRate }} spam mails sent.
+    </div>
     <div id="counter-container" class="grid grid-cols-2">
       <div id="mail-counter">
         <div class="font-bold">Mails Sent</div>
@@ -34,6 +36,9 @@ export default {
   computed: {
     spamSent() {
       return this.$store.getters.spamSent;
+    },
+    addresses() {
+      return this.$store.getters.addresses;
     },
     moneyMade() {
       return this.$store.getters.moneyMade;
