@@ -1,5 +1,5 @@
 <template>
-  <div id="counter-container" class="grid grid-cols-3 gap-4">
+  <div id="counter-container" class="text-gray-800 grid grid-cols-3 gap-4">
     <div id="mail-counter" class="flex flex-col justify-center">
       <div class="font-bold text-center">Mails Sent:</div>
       <div class="text-center">{{ spamSent }}</div>
