@@ -8,7 +8,7 @@ const store = new Vuex.Store({
   state: {
     mail: 0,
     mailPerSecond: 0, 
-    money: 1000,
+    money: 50,
     people: 1,
     moneyPerBatch: 0.01,
     clickMultiplier: 1,
