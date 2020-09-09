@@ -4,11 +4,11 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 // Basic mail stuff below
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     mail: 0,
     mailPerSecond: 0, 
-    money: 10,
+    money: 1000,
     people: 1,
     moneyPerBatch: 0.01,
     clickMultiplier: 1,
@@ -78,6 +78,9 @@ export default new Vuex.Store({
     },
     offAlert(state) {
       state.noMoney = false;
+    },
+    loadState(state, newState) {
+      this.replaceState(newState);
     }
   },
   actions: {
@@ -98,3 +101,5 @@ export default new Vuex.Store({
     }
   }
 });
+
+export default store;
